@@ -1,0 +1,16 @@
+<h1>画像投稿フォーム</h1>
+
+<%= form_with model: @book, local:true do |f| %>
+  <h4>画像</h4>
+  <%= f.label :image %><br>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>本のタイトル</h4>
+  <%= f.label :title %><br>
+  <%= f.text_field :title, value: "", placeholder: "placeholder text", class: "hogehoge", size: 30 %>
+  <h4>本の感想</h4>
+  <%= f.label :body %><br>
+  <%= f.text_area :body, class: "hogehoge", size: "30x10" %>
+  <h4>本のジャンル</h4>
+  <%= f.select :genre, Book.genres.keys, {prompt: "選択してください"}, class: "genre-select" %>
+  <%= f.submit '投稿' %>
+<% end %>
