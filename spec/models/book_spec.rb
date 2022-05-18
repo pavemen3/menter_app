@@ -2,7 +2,20 @@
 require 'rails_helper'
 
 describe "Bookモデルのテスト" do
-  it "有効な投稿内容である" do
-    expect(FactoryBot.build(:book)).to be_valid
+  before do
+    @user = FactoryBot.create(:user)
   end
+
+  context "有効な投稿内容である" do
+    it "投稿者の投稿した本である" do
+      expect(FactoryBot.build(:book)).to be_valid
+    end
+  end
+
+    context "無効な投稿内容である" do
+    it "投稿者の投稿した本ではない" do
+      expect(FactoryBot.build(:book, user_id: 3)).not_to be_valid
+    end
+  end
+
 end
