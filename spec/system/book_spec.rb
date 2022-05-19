@@ -5,22 +5,60 @@ describe "投稿のテスト" do
   let!(:user) { create(:user) }
   let!(:book) { create(:book) }
 
-  describe "トップ画面(root_path)のテスト" do
+  describe "About画面(about_path)のテスト" do
+    before do
+      visit about_path
+    end
+
+    context "表示の確認" do
+      it "About画面(about_path)に「Homes#about」が表示されているか" do
+        expect(page).to have_content('Homes#about')
+      end
+    end
+  end
+
+  describe "ログインしていないときのトップ画面(root_path)のテスト" do
     before do
       visit root_path
     end
+
     context "表示の確認" do
-      it "トップ画面(root_path)に「Homes#top」が表示されているか" do
-        expect(page).to have_content('Homes#top')
+      it "ログイン画面が表示されているか" do
+        expect(page).to have_content('Log in')
       end
 
-      it "'root_path /top' であるか" do
-        # テストコード
+      it "current_urlが '/users/sign_in' であるか" do
+        expect(current_url).to eq "http://www.example.com/"
+      end
+
+      it "root_pathが '/' であるか" do
+        expect(current_path).to eq "/"
+      end
+    end
+
+    context "ログインの確認とリダイレクト" do
+      it "正しくログインできるか" do
+        sign_in user
+        expect(current_path).to eq "/users/#{user.id}"
+      end
+    end
+  end
+
+  describe "ログインしているときのトップ画面(root_path)のテスト" do
+    before do
+      sign_in user
+      visit root_path
+    end
+
+    context "表示の確認" do
+      it "マイページが表示されているか" do
+        expect(current_path).to eq "/users/#{user.id}"
       end
     end
   end
 
 end
+
 
 
   # describe ：投稿画面のテスト
