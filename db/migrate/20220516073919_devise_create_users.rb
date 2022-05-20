@@ -34,8 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       ## 名前を保存するカラム
       t.string :name
-      ## 管理者権限
-      t.boolean :admin, default: false
+      ## 権限 1...admin, 2...staff, 3...customer
+      t.integer :role_id, default: 3
 
       t.timestamps null: false
     end

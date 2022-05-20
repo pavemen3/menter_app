@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :books, dependent: :destroy
+  belongs_to :role
 
   def get_avatar(width, height)
     unless avatar.attached?

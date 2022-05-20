@@ -8,13 +8,13 @@ describe "Bookモデルのテスト" do
 
   context "有効な投稿内容である" do
     it "投稿者の投稿した本である" do
-      expect(FactoryBot.build(:book)).to be_valid
+      expect(FactoryBot.build(:book, user_id: @user.id)).to be_valid
     end
   end
 
     context "無効な投稿内容である" do
     it "投稿者の投稿した本ではない" do
-      expect(FactoryBot.build(:book, user_id: 3)).not_to be_valid
+      expect(FactoryBot.build(:book, user_id: @user.id + 1)).not_to be_valid
     end
   end
 

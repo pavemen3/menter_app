@@ -1,76 +1,37 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe "投稿のテスト" do
-  let!(:user) { create(:user) }
-  let!(:book) { create(:book) }
 
-  describe "About画面(about_path)のテスト" do
-    before do
-      visit about_path
-    end
+# describe "投稿のテスト" do
+#   let!(:user) { create(:user) }
 
-    context "表示の確認" do
-      it "About画面(about_path)に「Homes#about」が表示されているか" do
-        expect(page).to have_content('Homes#about')
-      end
-    end
-  end
+#   describe "投稿画面のテスト" do
+#     before do
+#       sign_in user
+#       visit new_book_path
+#     end
+#     context "表示の確認" do
+#       it "新規登録画面のURLが'/books/new'であるか" do
+#         expect(current_path).to eq "/books/new"
+#       end
 
-  describe "ログインしていないときのトップ画面(root_path)のテスト" do
-    before do
-      visit root_path
-    end
+#       it "投稿ボタンが表示されているか" do
+#         expect(page).to have_content("投稿")
+#       end
+#     end
 
-    context "表示の確認" do
-      it "ログイン画面が表示されているか" do
-        expect(page).to have_content('Log in')
-      end
-
-      it "current_urlが '/users/sign_in' であるか" do
-        expect(current_url).to eq "http://www.example.com/"
-      end
-
-      it "root_pathが '/' であるか" do
-        expect(current_path).to eq "/"
-      end
-    end
-
-    context "ログインの確認とリダイレクト" do
-      it "正しくログインできるか" do
-        sign_in user
-        expect(current_path).to eq "/users/#{user.id}"
-      end
-    end
-  end
-
-  describe "ログインしているときのトップ画面(root_path)のテスト" do
-    before do
-      sign_in user
-      visit root_path
-    end
-
-    context "表示の確認" do
-      it "マイページが表示されているか" do
-        expect(current_path).to eq "/users/#{user.id}"
-      end
-    end
-  end
-
-end
+#     context "投稿処理のテスト" do
+#       it "投稿後のリダイレクト先は正しいか" do
+#         FactoryBot.create(:book, user_id: user.id)
+#         sleep 0.1
+#         expect(response).to redirect_to books_path
+#       end
+#     end
+#   end
+# end
 
 
 
-  # describe ：投稿画面のテスト
-  #   before ：投稿画面への遷移
-  #   context：表示の確認
-  #     it ：new_list_pathが"/lists/new"であるか'
-  #       テストコード
-  #     it：投稿ボタンが表示されているか'
-  #       テストコード
-  #   context：投稿処理のテスト
-  #     it：投稿後のリダイレクト先は正しいか
-  #       テストコード
 
   # describe：一覧画面のテスト
   #   before：一覧画面への遷移
