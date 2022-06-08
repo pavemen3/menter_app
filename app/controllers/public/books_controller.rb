@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class Public::BooksController < ApplicationController
   # ログインしていないときはログイン画面にリダイレクト
   before_action :authenticate_user!
 

@@ -1,9 +1,6 @@
 Role.create!(
   [
     {
-      name: 'admin',
-    },
-    {
       name: 'staff',
     },
     {
@@ -12,13 +9,18 @@ Role.create!(
   ]
 )
 
+Admin.find_or_create_by(id: 1) do |admin|
+  admin.email = "example@example.com"
+  admin.password = "aaaaaaaa"
+end
+
 User.create!(
   [
     {
-      email: 'admin@example.jp',
-      password:  "aaaaaaaa",
-      password_confirmation: "aaaaaaaa",
-      name: '管理者',
+      email: 'staff@example.jp',
+      password:  "ssssssss",
+      password_confirmation: "ssssssss",
+      name: 'スタッフ',
       role_id: 1
     },
     {
@@ -26,7 +28,7 @@ User.create!(
       password:  "11111111",
       password_confirmation: "11111111",
       name: 'カスタマー1',
-      role_id: 3
+      role_id: 2
     }
   ]
 )

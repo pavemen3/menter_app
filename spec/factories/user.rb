@@ -1,10 +1,7 @@
 FactoryBot.define do
-  factory :admin_user do
-    email { 'admin@example.com' }
-    # sequence(:email) { |n| "test#{n}@example.com" } # データを生成する毎に通し番号をふってユニークな値を作る
+  factory :admin do
+    email { 'example@example.com' }
     password { 'aaaaaaaa' }
-    name { 'admin1' }
-    role_id { 1 }
   end
 
   factory :staff do
@@ -12,7 +9,7 @@ FactoryBot.define do
     # sequence(:email) { |n| "test#{n}@example.com" } # データを生成する毎に通し番号をふってユニークな値を作る
     password { 'ssssssss' }
     name { 'staff1' }
-    role_id { 2 }
+    role_id { 1 }
   end
 
   factory :user do
@@ -20,7 +17,7 @@ FactoryBot.define do
     # sequence(:email) { |n| "test#{n}@example.com" } # データを生成する毎に通し番号をふってユニークな値を作る
     password { 'cccccccc' }
     name { 'customer1' }
-    role_id { 3 }
+    role_id { 2 }
   end
 
   # factory :guest_user do
