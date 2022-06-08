@@ -10,7 +10,7 @@ Role.create!(
 )
 
 Admin.find_or_create_by(id: 1) do |admin|
-  admin.email = "example@example.com"
+  admin.email = "admin@example.com"
   admin.password = "aaaaaaaa"
 end
 
