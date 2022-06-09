@@ -1,6 +1,6 @@
-class Admin::BooksController < ApplicationController
+class Public::BooksController < ApplicationController
   # ログインしていないときはログイン画面にリダイレクト
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
 
   def index
     @books = Book.all
@@ -11,10 +11,11 @@ class Admin::BooksController < ApplicationController
   end
 
   def create
+    # binding.pry
     @book = Book.new(book_params)
-    @book.user_id = 1 # staff
+    @book.user_id = current_user.id
     if @book.save
-      redirect_to admin_book_path(@book.id), notice: "You have created book successfully."
+      redirect_to public_book_path(@book.id), notice: "You have created book successfully."
     else
       render 'new'
     end
@@ -31,7 +32,7 @@ class Admin::BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to admin_book_path(@book.id), notice: "You have updated book successfully."
+      redirect_to public_book_path(@book.id), notice: "You have updated book successfully."
     else
       render "edit"
     end
@@ -40,7 +41,7 @@ class Admin::BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to admin_books_path
+    redirect_to public_books_path
   end
 
   private
@@ -48,4 +49,5 @@ class Admin::BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body, :image, :genre)
   end
+
 end

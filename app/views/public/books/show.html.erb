@@ -19,8 +19,10 @@
             <th>コメント数</th>
             <th>閲覧数</th>
             <th>評価</th>
-            <th></th>
-            <th></th>
+            <% if @book.user.id == current_user.id %>
+              <th></th>
+              <th></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +33,7 @@
                 <%= @book.user.name %>
               <% end %>
             </td>
-            <td><%= link_to @book.title, admin_book_path(@book) %></td>
+            <td><%= link_to @book.title, public_book_path(@book) %></td>
             <td><%= @book.body %></td>
             <td><%= @book.genre %></td>
             <td id="favorite_btn_<%= @book.id %>">
@@ -43,9 +45,11 @@
             <td><p class="view-count"><%#= @book.view_counts.count %></p></td>
             <td>
             </td>
-            <td><%= link_to 'Edit', edit_admin_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-            <td><%= link_to 'Destroy', admin_book_path(@book), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-        </tr>
+            <% if @book.user.id == current_user.id %>
+              <td><%= link_to 'Edit', edit_public_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+              <td><%= link_to 'Destroy', public_book_path(@book), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+            <% end %>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -2,7 +2,7 @@
 
 <% @books.each do |book| %>
 <div>
-  <%= link_to admin_book_path(book.id) do %>
+  <%= link_to public_book_path(book.id) do %>
     <%= image_tag book.get_image(100,100) %>
   <% end %>
   <p>名前：<%= book.title %></p>

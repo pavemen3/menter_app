@@ -1,0 +1,18 @@
+<!-- ユーザーの詳細 -->
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_avatar(100,100) %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @books.each do |book| %>
+<div>
+  <%= link_to public_book_path(book.id) do %>
+    <%= image_tag book.get_image(63,63) %>
+  <% end %>
+  <p>タイトル：<%= book.title %></p>
+  <p>説明：<%= book.body %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+</div>
+<% end %>

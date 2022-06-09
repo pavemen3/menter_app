@@ -1,2 +1,18 @@
-<h1>Admin::Books#edit</h1>
-<p>Find me in app/views/admin/books/edit.html.erb</p>
+<h1>本の編集（管理者用）</h1>
+
+<%= form_with model: @book, url: admin_book_path(@book.id), local:true do |f| %>
+  <h4>投稿者</h4>
+  <h4>画像</h4>
+  <%= f.label :image %><br>
+  <%= image_tag @book.get_image(100,100) %><br>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>本のタイトル</h4>
+  <%= f.label :title %><br>
+  <%= f.text_field :title, placeholder: "Rubyの本", class: "hogehoge", size: 30 %>
+  <h4>本の感想</h4>
+  <%= f.label :body %><br>
+  <%= f.text_area :body, class: "hogehoge", size: "30x10" %>
+  <h4>本のジャンル</h4>
+  <%= f.select :genre, Book.genres.keys, {prompt: "選択してください"}, class: "genre-select" %>
+  <%= f.submit '更新' %>
+<% end %>

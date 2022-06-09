@@ -1,6 +1,6 @@
-<h1>本の新規投稿（管理者用）</h1>
+<h1>本の新規投稿</h1>
 
-<%= form_with model: @book, url: admin_books_path, local:true do |f| %>
+<%= form_with model: @book, url: public_books_path, local:true do |f| %>
   <h4>画像</h4>
   <%= f.label :image %><br>
   <%= f.file_field :image, accept: "image/*" %>
