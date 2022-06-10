@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :books
   end
   namespace :public do
-    resources :users, only: [:index, :show, :new, :edit]
+    resources :users
     resources :books
   end
 

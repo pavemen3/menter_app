@@ -4,6 +4,11 @@
   <%= image_tag @user.get_avatar(100,100) %>
 </div>
 
+<%= link_to 'Edit', edit_admin_user_path(@user), class: "btn btn-sm btn-success edit_book_#{@user.id}" %>
+<%= link_to edit_admin_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+  <i class="fas fa-user-cog"></i>
+<% end %>
+
 <!-- ユーザーの投稿一覧 -->
 
 <% @books.each do |book| %>

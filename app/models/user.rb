@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   belongs_to :role
 
+  validates :name, presence:true
+
   def get_avatar(width, height)
     unless avatar.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -5,7 +5,11 @@
   <%= link_to admin_user_path(user.id) do %>
     <%= image_tag user.get_avatar(100,100) %>
   <% end %>
-  <p>名前：<%= user.name %></p>
+  <p>
+    名前：<%= link_to admin_user_path(user.id) do %>
+      <%= user.name %>
+    <% end %>
+  </p>
   <p>ロール：<%= user.role_id %></p>
 </div>
 <% end %>
