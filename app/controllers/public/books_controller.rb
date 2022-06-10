@@ -2,8 +2,17 @@ class Public::BooksController < ApplicationController
   # ログインしていないときはログイン画面にリダイレクト
   before_action :authenticate_user!
 
+  # public/books のとき
   def index
     @books = Book.all
+  end
+
+  # public/api/books のとき
+  def index_api
+    @books = Book.all
+    respond_to do |format|
+      format.json { render json: @books }
+    end
   end
 
   def new

@@ -2,8 +2,17 @@ class Public::UsersController < ApplicationController
   # ログインしていないときはログイン画面にリダイレクト
   before_action :authenticate_user!
 
+  # public/users のとき
   def index
     @users = User.all
+  end
+
+  # public/api/users のとき
+  def index_api
+    @users = User.all
+    respond_to do |format|
+      format.json { render json: @users }
+    end
   end
 
   def show
