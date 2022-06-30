@@ -29,7 +29,7 @@
           <tr>
             <td>
               <%= image_tag @book.get_image(63,63) %><br>
-              <%= link_to admin_user_path(@book.user) do %>
+              <%= link_to public_user_path(@book.user) do %>
                 <%= @book.user.name %>
               <% end %>
             </td>

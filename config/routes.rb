@@ -13,11 +13,25 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :books, defaults: { format: :json }
+    resources :books
   end
   namespace :public do
     resources :users
     resources :books
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :books, only: %i[index]
+
+      mount_devise_token_auth_for "User", at: "auth", controllers: {
+        registrations: 'api/v1/auth/registrations'
+      }
+
+      namespace :auth do
+        resources :sessions, only: %i[index]
+      end
+    end
   end
 
   # devise_scope :admin do
@@ -29,16 +43,6 @@ Rails.application.routes.draw do
     get 'public/api/books', to: 'public/books#index_api', defaults: { format: :json }
     get 'public/api/users', to: 'public/users#index_api', defaults: { format: :json }
   end
-
-  # scope '/api' do
-  #   get '/contents', to: 'contents#index', defaults: { format: :json }
-  #   get '/contents/:id', to: 'contents#show', defaults: { format: :json }
-  # end
-
-  # ログイン画面をrootに設定
-  # devise_scope :user do
-  #   root to: "devise/sessions#new"
-  # end
 
   get "home/about"=>"homes#about", as: "about"
 end

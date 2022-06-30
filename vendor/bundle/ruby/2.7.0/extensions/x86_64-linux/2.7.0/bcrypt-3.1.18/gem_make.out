@@ -1,0 +1,28 @@
+current directory: /vagrant_data/apps/menter_app/vendor/bundle/ruby/2.7.0/gems/bcrypt-3.1.18/ext/mri
+/home/vagrant/.rbenv/versions/2.7.4/bin/ruby -I /home/vagrant/.rbenv/versions/2.7.4/lib/ruby/2.7.0 -r ./siteconf20220630-4439-1qllvkv.rb extconf.rb
+creating Makefile
+
+current directory: /vagrant_data/apps/menter_app/vendor/bundle/ruby/2.7.0/gems/bcrypt-3.1.18/ext/mri
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 1.5 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /vagrant_data/apps/menter_app/vendor/bundle/ruby/2.7.0/gems/bcrypt-3.1.18/ext/mri
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 1.5 s in the future
+compiling bcrypt_ext.c
+compiling crypt_blowfish.c
+gcc  -D__SKIP_GNU -I/home/vagrant/.rbenv/versions/2.7.4/include     -c -o x86.o x86.S
+compiling crypt_gensalt.c
+compiling wrapper.c
+wrapper.c:182:60: warning: ‘struct crypt_data’ declared inside parameter list will not be visible outside of this definition or declaration
+ char *crypt_r(const char *key, const char *setting, struct crypt_data *data)
+                                                            ^~~~~~~~~~
+linking shared-object bcrypt_ext.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /vagrant_data/apps/menter_app/vendor/bundle/ruby/2.7.0/gems/bcrypt-3.1.18/ext/mri
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 0.092 s in the future
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20220630-4439-1b24npl
+make: warning:  Clock skew detected.  Your build may be incomplete.
