@@ -1,5 +1,6 @@
-class Api::V1::Auth::SessionsController < DeviseTokenAuth::RegistrationsController
-# ログイン状態確認用コントローラー
+# class Api::V1::Auth::SessionsController < DeviseTokenAuth::RegistrationsController
+class Api::V1::Auth::SessionsController < ApplicationController
+    # ログイン状態確認用コントローラー
   def index
     if current_api_v1_user
       render json: { is_login: true, data: current_api_v1_user }

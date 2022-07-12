@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :books, only: %i[index]
 
-      mount_devise_token_auth_for "User", at: "auth", controllers: {
+      # 「/omniauth/sessions」へリダイレクトしてしまう場合はskip: [:omniauth_callbacks]を追記
+      mount_devise_token_auth_for "User", at: "auth", skip: [:omniauth_callbacks], controllers: {
         registrations: 'api/v1/auth/registrations'
       }
 
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'public/api/books', to: 'public/books#index_api', defaults: { format: :json }
     get 'public/api/users', to: 'public/users#index_api', defaults: { format: :json }
+    # get 'api/v1/auth/sessions', to: 'api/v1/auth/sessions#index', defaults: { format: :json }
   end
 
   get "home/about"=>"homes#about", as: "about"
