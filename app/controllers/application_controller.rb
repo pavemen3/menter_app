@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # rails管理画面とAPIを共存させるには
   # include DeviseTokenAuth::Concerns::SetUserByToken はapi/v1/application_controller.rbへ
   # helper_method :current_user, :user_signed_in? はapi/v1/application_controller.rbへ
-
+  include ActionController::MimeResponds
   skip_before_action :verify_authenticity_token
   # InvalidAuthenticityTokenエラーがでるので
   # https://qiita.com/wktq/items/8a4653153af47933c169 参照
