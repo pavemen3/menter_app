@@ -42,9 +42,7 @@ Rails.application.routes.draw do
   # devise管理をしているモデルは「devise_scope :model名」を設定しないとroute errorが出る
   devise_scope :user do
     get 'public/api/books', to: 'public/books#index_api', defaults: { format: :json }
-    # get 'api/v1/books', to: 'public/books#index_api', defaults: { format: :json }
     get 'public/api/users', to: 'public/users#index_api', defaults: { format: :json }
-    # get 'api/v1/auth/sessions', to: 'api/v1/auth/sessions#index', defaults: { format: :json }
   end
 
   get "home/about"=>"homes#about", as: "about"

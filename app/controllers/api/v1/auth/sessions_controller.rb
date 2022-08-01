@@ -5,7 +5,7 @@ class Api::V1::Auth::SessionsController < ApplicationController
     if current_user # current_api_v1_userかどうかはのちに確認する
       render json: { is_login: true, data: current_user }
     else
-      render json: { is_login: false, message: "ユーザーが存在しません" }
+      render json: { is_login: false, message: current_user }
     end
   end
 end
