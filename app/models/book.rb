@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  include Rails.application.routes.url_helpers
   has_one_attached :image
   belongs_to :user
 
@@ -32,5 +33,10 @@ class Book < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def image_url
+    # 紐づいている画像のURLを取得する
+    image.attached? ? url_for(image) : nil
   end
 end
